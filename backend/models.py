@@ -1,15 +1,21 @@
 from config import db
 
-class Contact(db.Model):
+class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50), unique = False, nullable=False) #nullable=False means this field must have a value
-    last_name = db.Column(db.String(50), unique = False, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False) # unique=True means this field must be unique across all records
-    
+    date = db.Column(db.String(20), unique=False, nullable=False)
+    exercise = db.Column(db.String(50), unique=False, nullable=False)
+    duration = db.Column(db.String(20))
+    reps = db.Column(db.String(50))
+    sets = db.Column(db.String(20))
+    weight = db.Column(db.String(50))  # New field for weight
+
     def to_json(self):
         return{
             'id': self.id,
-            'firstName': self.first_name,
-            'lastName': self.last_name,
-            'email': self.email
+            'date': self.date,
+            'exercise': self.exercise,
+            'duration': self.duration,
+            'reps': self.reps,
+            'sets': self.sets,
+            'weight': self.weight  # Include weight in the JSON representation
         }

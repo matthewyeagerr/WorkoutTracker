@@ -1,64 +1,62 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import ContactList from './ContactList'
-import ContactForm from './ContactForm'
+import { useState, useEffect } from 'react';
+import './App.css';
+import WorkoutList from './WorkoutList';
+import WorkoutForm from './WorkoutForm';
 
 function App() {
-  const [contacts, setContacts] = useState([])
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [currentContact, setCurrentContact] = useState({})
+  const [workouts, setWorkouts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentWorkout, setCurrentWorkout] = useState({});
 
   useEffect(() => {
-    fetchContacts()
-  }, [])
+    fetchWorkouts();
+  }, []);
 
-  const fetchContacts = async () => {
-    const response = await fetch("http://127.0.0.1:5000/contacts")
-    const data = await response.json()
-    setContacts(data.contacts)
-  }
+  const fetchWorkouts = async () => {
+    const response = await fetch("http://127.0.0.1:5000/workouts");
+    const data = await response.json();
+    setWorkouts(data.workouts);
+  };
+  
 
   const closeModal = () => {
-    setIsModalOpen(false)
-    setCurrentContact({})
-
-  }
+    setIsModalOpen(false);
+    setCurrentWorkout({});
+  };
 
   const openCreateModal = () => {
-    if (!isModalOpen) setIsModalOpen(true)
-  }
+    if (!isModalOpen) setIsModalOpen(true);
+  };
 
-  const openEditModal = (contact) => {
-    if (isModalOpen) return
-    setCurrentContact(contact)
-    setIsModalOpen(true)
-  }
+  const openEditModal = (workout) => {
+    if (isModalOpen) return;
+    setCurrentWorkout(workout);
+    setIsModalOpen(true);
+  };
 
   const onUpdate = () => {
-    closeModal()
-    fetchContacts()
-  }
+    closeModal();
+    fetchWorkouts();
+  };
 
   return (
     <>
-      <ContactList contacts={contacts} updateContact={openEditModal} updateCallback={onUpdate} />
+      <WorkoutList workouts={workouts} updateWorkout={openEditModal} updateCallback={onUpdate} />
 
-      {/* ✅ This button is now outside the modal so it always shows */}
-      <button onClick={openCreateModal}>Create Contact</button>
+      <button onClick={openCreateModal}>Create Workout</button>
 
-      {/* ✅ Only the modal itself is conditionally rendered */}
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={closeModal}>
               &times;
             </span>
-            <ContactForm existingContact = {currentContact} updateCallback={onUpdate} />
+            <WorkoutForm existingWorkout={currentWorkout} updateCallback={onUpdate} />
           </div>
         </div>
       )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
