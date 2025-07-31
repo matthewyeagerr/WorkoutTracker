@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import WorkoutList from './WorkoutList';
 import WorkoutForm from './WorkoutForm';
+import Calendar from './CalendarView';
+import 'react-calendar/dist/Calendar.css';
 
 function App() {
   const [workouts, setWorkouts] = useState([]);
@@ -118,6 +120,8 @@ function App() {
 
   return (
     <>
+    
+      <Calendar workouts={workouts} />
       <WorkoutList
         workouts={workouts}
         updateWorkout={openEditModal}

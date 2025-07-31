@@ -1,0 +1,34 @@
+/* CalendarView.css */
+.calendar-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.calendar-label {
+  font-size: 0.7rem;
+  text-align: center;
+  color: #333;
+
+
+}
+
+.details {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  
+}
+
+.react-calendar {
+  width: 100%;
+  max-width: 100%;
+  border: none;
+}
+.react-calendar__tile {
+  color: black;
+}
+.react-calendar__tile--active {
+  color: white;
+}
