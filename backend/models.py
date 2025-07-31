@@ -8,6 +8,7 @@ class Workout(db.Model):
     reps = db.Column(db.String(50))
     sets = db.Column(db.String(20))
     weight = db.Column(db.String(50))  # New field for weight
+    distance = db.Column(db.String(50))  # New field for distance
 
     def to_json(self):
         return{
@@ -17,5 +18,6 @@ class Workout(db.Model):
             'duration': self.duration,
             'reps': self.reps,
             'sets': self.sets,
-            'weight': self.weight  # Include weight in the JSON representation
+            'weight': self.weight,  # Include weight in the JSON representation
+            'distance': self.distance  # Include distance in the JSON representation
         }

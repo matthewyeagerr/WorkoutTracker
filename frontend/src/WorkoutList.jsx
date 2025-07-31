@@ -62,7 +62,8 @@ const WorkoutList = ({ workouts, updateWorkout, updateCallback, username, passwo
                 <th>Duration</th>
                 <th>Reps</th>
                 <th>Sets</th>
-                <th>Weight (lbs)</th>
+                <th>Weight(lbs)</th>
+                <th>Distance(mi)</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -74,6 +75,7 @@ const WorkoutList = ({ workouts, updateWorkout, updateCallback, username, passwo
                   <td>{workout.reps}</td>
                   <td>{workout.sets}</td>
                   <td>{workout.weight}</td>
+                  <td>{workout.distance}</td>
                   <td>
                     <button onClick={() => updateWorkout(workout)}>Update</button>{" "}
                     <button onClick={() => onDelete(workout.id)}>Delete</button>

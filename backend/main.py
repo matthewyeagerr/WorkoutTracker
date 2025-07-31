@@ -25,7 +25,8 @@ def add_workout():
         duration=data.get('duration', ''),
         sets=data.get('sets', ''),
         reps=data.get('reps', ''),
-        weight=data.get('weight', '')
+        weight=data.get('weight', ''),
+        distance=data.get('distance', '')
     )
     db.session.add(new_workout)
     db.session.commit()
@@ -46,6 +47,7 @@ def update_workout(workout_id):
     workout.sets = data.get("sets", workout.sets)
     workout.reps = data.get("reps", workout.reps)
     workout.weight = data.get("weight", workout.weight)
+    workout.distance = data.get("distance", workout.distance)
 
     db.session.commit()
     return jsonify({"message": "Workout updated successfully"}), 200

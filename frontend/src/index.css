@@ -71,3 +71,16 @@ h1{
 header p{
   font-style: italic;
 }
+select#exercise {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-top: 10px;
+}
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
