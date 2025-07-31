@@ -1,15 +1,18 @@
 import React from "react";
 
-const WorkoutList = ({ workouts, updateWorkout, updateCallback }) => {
+const WorkoutList = ({ workouts, updateWorkout, updateCallback, username, password }) => {
   const onDelete = async (id) => {
     try {
       const response = await fetch(`http://127.0.0.1:5000/delete_workout/${id}`, {
         method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }), // pass auth here
       });
       if (response.status === 200) {
         updateCallback();
       } else {
-        console.error("Failed to delete workout");
+        const result = await response.json();
+        alert(result.message || "Failed to delete workout");
       }
     } catch (error) {
       alert(error);
@@ -34,8 +37,22 @@ const WorkoutList = ({ workouts, updateWorkout, updateCallback }) => {
     <div>
       <h2>Workouts</h2>
       {Object.entries(groupedWorkouts).map(([date, workoutsForDate]) => (
-        <details key={date} style={{ marginBottom: "1rem", border: "1px solid #ddd", borderRadius: "6px", padding: "0.5rem" }}>
-          <summary style={{ fontWeight: "bold", cursor: "pointer", fontSize: "1.1rem" }}>
+        <details
+          key={date}
+          style={{
+            marginBottom: "1rem",
+            border: "1px solid #ddd",
+            borderRadius: "6px",
+            padding: "0.5rem",
+          }}
+        >
+          <summary
+            style={{
+              fontWeight: "bold",
+              cursor: "pointer",
+              fontSize: "1.1rem",
+            }}
+          >
             {date}
           </summary>
           <table style={{ width: "100%", marginTop: "0.5rem" }}>

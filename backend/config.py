@@ -8,5 +8,8 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+app.config['USERNAME'] = 'admin'
+app.config['PASSWORD'] = 'password'
+
 db = SQLAlchemy(app) # create database instance
 
