@@ -36,7 +36,15 @@ const WorkoutList = ({ workouts, updateWorkout, updateCallback, username, passwo
   return (
     <div>
       <h2>Workouts</h2>
-      {Object.entries(groupedWorkouts).map(([date, workoutsForDate]) => (
+      {Object.entries(groupedWorkouts)
+  .sort(([dateA], [dateB]) => {
+    const [monthA, dayA, yearA] = dateA.split(/[-/]/).map(Number);
+    const [monthB, dayB, yearB] = dateB.split(/[-/]/).map(Number);
+    const a = new Date(yearA, monthA - 1, dayA);
+    const b = new Date(yearB, monthB - 1, dayB);
+    return b - a; // descending (newest dates first)
+  })
+  .map(([date, workoutsForDate]) => (
         <details
           key={date}
           style={{
